@@ -64,10 +64,10 @@ const button = document.querySelector("#boton-filtrar");
 const filtrarPersonajes = async (name: string): Promise<void> => {
     try {
         const personajes = await obtenerPersonajes();
-        const filteredCharacters = personajes.filter(personaje =>
+        const filtarNombres = personajes.filter(personaje =>
             personaje.nombre.toLowerCase().includes(name.toLowerCase())
         );
-        pintarPersonajesFiltrados(filteredCharacters);
+        pintarPersonajesFiltrados(filtarNombres);
     } catch (error) {
         console.error("Error al filtrar los personajes:", error);
     }
