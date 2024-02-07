@@ -1,49 +1,6 @@
 import { Personaje } from "./personajes-listado.model";
 import { obtenerPersonajes } from "./personajes-listado-api";
-
-const crearElementoImagen = (
-    imagen: string, 
-    nombre:string
-    ): HTMLImageElement => {
-        const urlCompleta = `http://localhost:3000/${imagen}`;
-
-        
-        const imagenUrl = document.createElement("img");
-        imagenUrl.src = urlCompleta;
-        imagenUrl.alt = nombre;
-        return imagenUrl;
-}
-
-const crearElementoParrafo = (texto: string) : HTMLParagraphElement => {
-    const parrafo = document.createElement("p");
-    parrafo.textContent = texto;
-    return parrafo;
-}
-
-const crearContenedorPersonaje = (personaje: Personaje): HTMLDivElement => {
-    const elementoPersonaje = document.createElement ("div");
-    elementoPersonaje.classList.add("personaje-contenedor");
-
-    const imagen = crearElementoImagen(personaje.imagen , personaje.nombre);
-    elementoPersonaje.appendChild(imagen);
-
-    const nombre = crearElementoParrafo("Nombre: " + personaje.nombre);
-    elementoPersonaje.appendChild(nombre);
-
-    const apodo = crearElementoParrafo("Apodo: " + personaje.apodo);
-    elementoPersonaje.appendChild(apodo);
-
-    const especialidades = crearElementoParrafo("Especialidad: " + personaje.especialidad);
-    elementoPersonaje.appendChild(especialidades);
-
-    const habilidades = crearElementoParrafo("Habilidades: " + personaje.habilidades);
-    elementoPersonaje.appendChild(habilidades);
-
-    const amigo = crearElementoParrafo("Amigo: " + personaje.amigo);
-    elementoPersonaje.appendChild(amigo);
-
-    return elementoPersonaje;
-};
+import {crearContenedorPersonaje} from "./personajes-listado.helper";
 
 const pintarPersonajes = async (): Promise<void> => {
     const personajes = await obtenerPersonajes();
@@ -88,10 +45,6 @@ const pintarPersonajesFiltrados = (personajes: Personaje[]): void => {
 
 if (input && button) {
     button.addEventListener('click', () => {
-        const buscarPersonaje = input.value.trim();
-        filtrarPersonajes(buscarPersonaje);
-    });
-    input.addEventListener('input', () => {
         const buscarPersonaje = input.value.trim();
         filtrarPersonajes(buscarPersonaje);
     });
