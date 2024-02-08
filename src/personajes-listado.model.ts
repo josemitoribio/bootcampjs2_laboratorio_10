@@ -3,7 +3,7 @@ export interface Personaje {
     nombre:string;
     apodo:string;
     especialidad:string;
-    habilidades: [string];
+    habilidades: string[];
     amigo:string;
     imagen:string;
 }
